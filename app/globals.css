@@ -12,8 +12,8 @@
   --c5: #7b3fe4;
   --grad: linear-gradient(90deg, var(--c1), var(--c2) 30%, var(--c3) 55%, var(--c4) 80%, var(--c5));
   --radius: 16px;
-  --font-display: "Exo 2", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-exo), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, -apple-system, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }

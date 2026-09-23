@@ -6,32 +6,51 @@ Contato: (91) 98460-4539 — WhatsApp
 
 ## Stack
 
-HTML + CSS + JavaScript puro, sem build. Basta abrir `index.html` ou servir a pasta:
+- [Next.js 16](https://nextjs.org) (App Router) + React 19 + TypeScript
+- CSS puro (`app/globals.css`), fontes via `next/font` (Exo 2 + Inter)
+- Página 100% estática (SSG)
+
+## Rodando
 
 ```bash
-npx serve .
-# ou
-python3 -m http.server 8080
+npm install
+npm run dev      # http://localhost:3000
+npm run build && npm start
 ```
 
 ## Estrutura
 
 ```
-index.html          # página única (seções: serviços, eventos, pacotes, como funciona, portfólio, orçamento, FAQ)
-css/style.css       # estilos (tema escuro + gradiente da marca)
-js/main.js          # menu mobile, equalizador animado, formulário -> WhatsApp
-assets/             # logo (onda sonora em SVG) e favicon
+app/
+  layout.tsx      # fontes, metadados/SEO, JSON-LD (LocalBusiness)
+  page.tsx        # página única: hero, serviços, eventos, pacotes, como funciona, portfólio, orçamento, FAQ
+  globals.css     # tema escuro + gradiente da marca
+  icon.svg        # favicon
+  sitemap.ts, robots.ts
+components/
+  Header.tsx      # menu (mobile com toggle)
+  Equalizer.tsx   # equalizador animado do hero
+  QuoteForm.tsx   # formulário de orçamento -> abre WhatsApp com a mensagem pronta
+  RevealOnScroll.tsx, WaLink.tsx, WhatsAppIcon.tsx
+lib/site.ts       # TODO o conteúdo editável: telefone, serviços, eventos, pacotes, FAQ, galeria
+public/logo-wave.svg
 ```
 
-O formulário de orçamento não precisa de backend: monta a mensagem e abre o WhatsApp com o texto preenchido.
+Para mudar textos, serviços, pacotes ou FAQ, edite só `lib/site.ts`.
+
+## Variáveis de ambiente
+
+| Nome | Uso | Padrão |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | URL canônica (SEO, sitemap) | `https://senamix.com.br` |
+
+## Deploy
+
+Recomendado: **Vercel** — importar o repositório, sem configuração extra.
 
 ## Pendências
 
-- [ ] Fotos reais no portfólio (`.gallery__item` → `style="background-image:url(assets/fotos/...)"`)
-- [ ] @ do Instagram no rodapé
+- [ ] Fotos reais no portfólio (`public/portfolio/` + campo `image` em `lib/site.ts`)
+- [ ] @ do Instagram (`site.instagram` em `lib/site.ts`)
 - [ ] Confirmar lista de serviços/equipamentos e cidades atendidas
-- [ ] Domínio (ex.: senamix.com.br) + deploy (GitHub Pages, Vercel ou Netlify)
-
-## Deploy no GitHub Pages
-
-Settings → Pages → Source: `Deploy from a branch` → `main` / `/ (root)`.
+- [ ] Domínio (ex.: senamix.com.br)
