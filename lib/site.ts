@@ -22,7 +22,13 @@ import type { Icon } from "@phosphor-icons/react";
 
 export const site = {
   name: "SENAMIX Sonorização",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://senamix.com.br",
+  // URL pública usada nas imagens de compartilhamento e no sitemap.
+  // Na Vercel usa o domínio de produção automaticamente; defina NEXT_PUBLIC_SITE_URL ao ter domínio próprio.
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "https://senamix.vercel.app"),
   phoneDisplay: "(91) 98460-4539",
   phoneTel: "+5591984604539",
   whatsapp: "5591984604539",

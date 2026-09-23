@@ -15,18 +15,45 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const title = "SENAMIX Sonorização | Som, Iluminação e Painéis de LED para Eventos";
+const description =
+  "Som profissional, iluminação, painéis de LED, DJ, palco e efeitos especiais para casamentos, formaturas, 15 anos, shows e eventos corporativos. Orçamento pelo WhatsApp (91) 98460-4539.";
+const shareDescription =
+  "Som, luz, painéis de LED e DJ para o seu evento acontecer. Peça seu orçamento pelo WhatsApp (91) 98460-4539.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "SENAMIX Sonorização | Som, Iluminação e Painéis de LED para Eventos",
-  description:
-    "SENAMIX Sonorização: som profissional, iluminação, painéis de LED, DJ, palco e efeitos especiais para casamentos, formaturas, 15 anos, shows e eventos corporativos. Orçamento pelo WhatsApp (91) 98460-4539.",
+  title: { default: title, template: "%s | SENAMIX Sonorização" },
+  description,
+  applicationName: site.name,
+  keywords: [
+    "sonorização",
+    "som para eventos",
+    "iluminação para eventos",
+    "painel de LED",
+    "telão de LED",
+    "DJ",
+    "casamento",
+    "15 anos",
+    "formatura",
+    "evento corporativo",
+    "Pará",
+  ],
+  alternates: { canonical: "/" },
   openGraph: {
     title: "SENAMIX Sonorização",
-    description: "Som, luz e imagem para o seu evento acontecer. Peça seu orçamento pelo WhatsApp.",
+    description: shareDescription,
+    url: "/",
     type: "website",
     locale: "pt_BR",
     siteName: site.name,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "SENAMIX Sonorização",
+    description: shareDescription,
+  },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
