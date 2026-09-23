@@ -1,10 +1,10 @@
 import type { CSSProperties } from "react";
+import { InstagramLogo, Phone, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { Equalizer } from "@/components/Equalizer";
 import { Header } from "@/components/Header";
 import { QuoteForm } from "@/components/QuoteForm";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { WaLink } from "@/components/WaLink";
-import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { events, faq, gallery, highlights, plans, services, site, steps } from "@/lib/site";
 
 export default function Home() {
@@ -31,7 +31,7 @@ export default function Home() {
             </p>
             <div className="hero__cta">
               <WaLink className="btn btn--grad" message="Olá! Vim pelo site e quero um orçamento para o meu evento.">
-                <WhatsAppIcon />
+                <WhatsappLogo size={22} weight="fill" />
                 Pedir orçamento no WhatsApp
               </WaLink>
               <a className="btn btn--ghost" href="#servicos">
@@ -62,7 +62,9 @@ export default function Home() {
             <div className="grid grid--services">
               {services.map((s) => (
                 <article className="card" key={s.title}>
-                  <div className="card__icon">{s.icon}</div>
+                  <div className="card__icon">
+                    <s.icon size={28} weight="duotone" />
+                  </div>
                   <h3>{s.title}</h3>
                   <p>{s.text}</p>
                 </article>
@@ -77,8 +79,11 @@ export default function Home() {
             <p className="eyebrow">Para quem</p>
             <h2 className="section__title">Eventos que a gente faz acontecer</h2>
             <ul className="chips">
-              {events.map((e) => (
-                <li key={e}>{e}</li>
+              {events.map(({ icon: EventIcon, label }) => (
+                <li key={label}>
+                  <EventIcon size={20} weight="duotone" />
+                  {label}
+                </li>
               ))}
             </ul>
           </div>
@@ -196,14 +201,18 @@ export default function Home() {
           <div>
             <h4>Contato</h4>
             <p>
-              <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
+              <a className="footer__link" href={`tel:${site.phoneTel}`}>
+                <Phone size={18} /> {site.phoneDisplay}
+              </a>
             </p>
             <p>
-              <WaLink message="Olá! Vim pelo site.">WhatsApp</WaLink>
+              <WaLink className="footer__link" message="Olá! Vim pelo site.">
+                <WhatsappLogo size={18} /> WhatsApp
+              </WaLink>
             </p>
             <p>
-              <a href={site.instagram} target="_blank" rel="noopener">
-                Instagram
+              <a className="footer__link" href={site.instagram} target="_blank" rel="noopener">
+                <InstagramLogo size={18} /> Instagram
               </a>
             </p>
           </div>
@@ -218,7 +227,7 @@ export default function Home() {
       </footer>
 
       <WaLink className="wa-float" message="Olá! Vim pelo site e quero um orçamento." aria-label="Falar no WhatsApp">
-        <WhatsAppIcon />
+        <WhatsappLogo size={32} weight="fill" />
       </WaLink>
 
       <RevealOnScroll />
